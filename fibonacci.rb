@@ -13,11 +13,11 @@ def fibs(n)
 end
 
 def temp_fibs_rec(n)
-  # Same, but using recurcive approach
+  # Huh?...
 
   array = Array.new
   method = lambda do |n|
-    puts 'this was printed recursively'
+    puts "this wasn't printed recursively, lol"
     return 0 if n == 1
     return 1 if n == 2
     num = method.call(n-1) + method.call(n-2)
@@ -32,5 +32,25 @@ def temp_fibs_rec(n)
 end
 
 def fibs_rec(n)
-  
+  # Same, but using recurcive approach
+  if !n.is_a?(Array)
+    array = Array.new(n, nil)
+    n = array
+  end
+   
+  if n[0] == nil
+    n[0] = 0
+  elsif n[1] == nil
+    n[1] = 1
+  else
+    n.each_with_index do |val, ind|
+      if val == nil
+        n[ind] = n[ind-1] + n[ind-2]
+        break
+      end
+    end
+  end 
+  fibs_rec(n) if n.include?(nil)
+  return n
 end
+
